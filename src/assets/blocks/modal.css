@@ -13,12 +13,10 @@
 
 .modal__content {
     background-color: #fff;
-    margin: 200px auto;
-    padding: 36px;
+    margin: 120px auto;
+    padding: 20px;
     border-radius: 10px;
     max-width: 430px;
-    max-height: 330px;
-    height: 100%;
     position: relative;
 }
 .modal__content_header{
@@ -71,12 +69,21 @@
     background-color: #000;
     border-radius: 8px;
     text-align: center;
-    margin: 48px auto 0;
+    margin: 48px auto 20px;
     transition:  0.3s ease, color 0.3s ease;
 }
 
 .modal__content_button:hover{
     background-color: #353333;
+}
+
+.modal__content-untiteld{
+    position: relative;
+    max-width: 35vw;
+    max-height: 61vh;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
 }
 
 .close {

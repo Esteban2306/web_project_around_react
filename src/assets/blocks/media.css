@@ -11,6 +11,10 @@
         justify-content: center;
     }
 
+    #galery__content{
+        margin: auto !important;
+    }
+
     .profile__info-list{
         display: flex;
         flex-direction: column;
@@ -102,6 +106,7 @@
     }
     #galery__content{
         gap: 10px;
+        padding: 0 86px 0 !important;
     }
     .galery__item{
         margin: auto;

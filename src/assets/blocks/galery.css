@@ -1,10 +1,20 @@
 
 #galery__content{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(282px, 0fr));
     gap: 17px;
     margin: auto;
-    padding-bottom: 40px;
+    padding: 0 0 40px 0
+}
+
+.galery{
+    list-style: none;
+    /* margin: 0;
+    max-width: 282px;
+    width: 100%;
+    max-height: 282px;
+    height: 100%; */
+
 }
 
 .galery__item{
@@ -15,6 +25,7 @@
     background-color: #ffffff;
     text-align: center;
     position: relative;
+    grid-column: 3 / 4;
 }
 
 .galery__item-image{
