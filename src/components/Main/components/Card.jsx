@@ -36,7 +36,6 @@ export default function Card({card, handleOpenPopup}) {
             {popup && (
                     <Popup onClose={handleClosePopup} title={popup.title}>
                         {popup.children}
-                        {console.log(popup)}
                     </Popup>
                     
                 )} 

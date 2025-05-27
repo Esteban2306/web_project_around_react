@@ -22,8 +22,8 @@ function Main (){
             isLiked: false,
             link: "https://plus.unsplash.com/premium_photo-1721268770804-f9db0ce102f8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             name: "Nex Mexico, Road",
-            owner: "ae39fd31bd3cee58a6cc18c5",
-            _id: "68114383a533c2001af97225"},
+            owner: "ae39fd31bd3cee58a6cc18f5",
+            _id: "68114383a533c2001af97227"},
 
         {
             createdAt: "2025-04-29T14:47:06.133Z",
@@ -31,23 +31,23 @@ function Main (){
             link: "https://resizer.glanacion.com/resizer/v2/cuanto-cuesta-irse-de-vacaciones-a-T36JYQWL5NCTXDLUIVBTKQFR4Y.JPG?auth=73c4badeafcd588bdf60de779d2c0d062da4e8790946df3b1eaa214f92fdd188&width=1280&height=854&quality=70&smart=true",
             name: "Bariloche",
             owner: "ae39fd31bd3cee58a6cc18c5",
-            _id: "6810e66aa533c2001af96f20",
+            _id: "6810e66aa533c2001af96f23",
         },
         {
             createdAt: "2025-04-29T14:47:06.133Z",
             isLiked: false,
             link: "https://resizer.glanacion.com/resizer/v2/cuanto-cuesta-irse-de-vacaciones-a-T36JYQWL5NCTXDLUIVBTKQFR4Y.JPG?auth=73c4badeafcd588bdf60de779d2c0d062da4e8790946df3b1eaa214f92fdd188&width=1280&height=854&quality=70&smart=true",
             name: "Bariloche",
-            owner: "ae39fd31bd3cee58a6cc18c5",
-            _id: "6810e66aa533c2001af96f20",
+            owner: "ae39fd31bd3cee58a6cc18b5",
+            _id: "6810e66aa533c2001af96f90",
         },
         {
             createdAt: "2025-04-29T14:47:06.133Z",
             isLiked: false,
             link: "https://resizer.glanacion.com/resizer/v2/cuanto-cuesta-irse-de-vacaciones-a-T36JYQWL5NCTXDLUIVBTKQFR4Y.JPG?auth=73c4badeafcd588bdf60de779d2c0d062da4e8790946df3b1eaa214f92fdd188&width=1280&height=854&quality=70&smart=true",
             name: "Bariloche",
-            owner: "ae39fd31bd3cee58a6cc18c5",
-            _id: "6810e66aa533c2001af96f20",
+            owner: "ae39fd31bd3cee58a6cc18d5",
+            _id: "6810e66aa533c2001af96f10",
         },
         
     ]
@@ -101,7 +101,6 @@ function Main (){
                 {popup && (
                     <Popup onClose={handleClosePopup} title={popup.title}>
                         {popup.children}
-                        {console.log(popup)}
                     </Popup>
                     
                 )} 
