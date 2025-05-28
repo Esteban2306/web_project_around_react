@@ -62,7 +62,7 @@
     opacity: 0.5;
 }
 
-.galery__item-like-button.liked {
+.galery__item-like-button_active {
     background-image: url(../image/black_heart.svg);
 }
 

@@ -1,58 +1,38 @@
 import '../../index.css'
 import  ProfileDefault  from '../../assets/image/profile.jpg'
 import profilePencilHover from '../../assets/image/pencil_img.svg'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import NewCard from './Popup/form/NewCard/NewCard'
 import EditAvatar from './Popup/form/EditAvatar/EditAvatar.jsx'
 import EditProfile from './Popup/form/EditProfile/EditProfile.jsx'
 import Popup from './Popup/Popup.jsx'
 import Card from './components/Card.jsx'
+import api from '../../utils/Api.js'
+import CurrentUserContext from '../../contexts/CurrentUserContext.js'
 
 function Main (){
 
     const [popup, setPopup] = useState(null)
+    const [cards, setCards] = useState([])
+
+    // Fetch cards from the API when the component mounts
+    // and set the state with the fetched data.
+
+    useEffect(() =>{
+        api.getCards()
+            .then((data) => {
+                setCards(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching cards:', error);
+            });
+    }, [])
+
+    const profileContext = useContext(CurrentUserContext);
 
     const newCardPopup = {title: 'Nuevo Lugar', children: <NewCard/>}
     const editAvatarPopup = {title: 'Cambiar imagen de perfil', children: <EditAvatar/>}
     const editProfilePopup = {title: 'Editar perfil', children: <EditProfile/>}
-
-    const cards =[
-        {
-            createdAt: "2025-04-29T21:24:19.731Z",
-            isLiked: false,
-            link: "https://plus.unsplash.com/premium_photo-1721268770804-f9db0ce102f8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            name: "Nex Mexico, Road",
-            owner: "ae39fd31bd3cee58a6cc18f5",
-            _id: "68114383a533c2001af97227"},
-
-        {
-            createdAt: "2025-04-29T14:47:06.133Z",
-            isLiked: false,
-            link: "https://resizer.glanacion.com/resizer/v2/cuanto-cuesta-irse-de-vacaciones-a-T36JYQWL5NCTXDLUIVBTKQFR4Y.JPG?auth=73c4badeafcd588bdf60de779d2c0d062da4e8790946df3b1eaa214f92fdd188&width=1280&height=854&quality=70&smart=true",
-            name: "Bariloche",
-            owner: "ae39fd31bd3cee58a6cc18c5",
-            _id: "6810e66aa533c2001af96f23",
-        },
-        {
-            createdAt: "2025-04-29T14:47:06.133Z",
-            isLiked: false,
-            link: "https://resizer.glanacion.com/resizer/v2/cuanto-cuesta-irse-de-vacaciones-a-T36JYQWL5NCTXDLUIVBTKQFR4Y.JPG?auth=73c4badeafcd588bdf60de779d2c0d062da4e8790946df3b1eaa214f92fdd188&width=1280&height=854&quality=70&smart=true",
-            name: "Bariloche",
-            owner: "ae39fd31bd3cee58a6cc18b5",
-            _id: "6810e66aa533c2001af96f90",
-        },
-        {
-            createdAt: "2025-04-29T14:47:06.133Z",
-            isLiked: false,
-            link: "https://resizer.glanacion.com/resizer/v2/cuanto-cuesta-irse-de-vacaciones-a-T36JYQWL5NCTXDLUIVBTKQFR4Y.JPG?auth=73c4badeafcd588bdf60de779d2c0d062da4e8790946df3b1eaa214f92fdd188&width=1280&height=854&quality=70&smart=true",
-            name: "Bariloche",
-            owner: "ae39fd31bd3cee58a6cc18d5",
-            _id: "6810e66aa533c2001af96f10",
-        },
-        
-    ]
-
-    console.log(cards)
 
     function handleOpenPopup(popup) {
         setPopup(popup);
@@ -60,13 +40,29 @@ function Main (){
       function handleClosePopup() {
         setPopup(null);
       }
+
+    async function handleCardLike(card) {
+    const isLiked = card.isLiked;
+    
+    await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+        setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+    }).catch((error) => console.error(error));
+}
+
+    function handleCardDelete(card) {
+    api.deleteCard(card._id)
+        .then(() => {
+            setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
+        })
+        .catch((error) => console.error('Error deleting card:', error));
+    }
     return(
         <>
             <main className="content">
                 <section className="profile">
                     <div className="profile__image-container"  > 
                         <img 
-                        src={ProfileDefault} 
+                        src={profileContext?.avatar || ProfileDefault} 
                         alt="profile of a men" 
                         className="profile__image" 
                         role="button" 
@@ -80,8 +76,8 @@ function Main (){
                     </div>
                     <div className="profile__info">
                         <ul className="profile__info-list">
-                            <li><h1 className="profile__info-name" id="name">Esteban Castañeda</h1></li>
-                            <li><p className="profile__info-description" id="description">Web development</p></li>
+                            <li><h1 className="profile__info-name" id="name">{profileContext?.name}</h1></li>
+                            <li><p className="profile__info-description" id="description">{profileContext?.about}</p></li>
                         </ul>
                         <button 
                         className="profile__edit-button" 
@@ -95,7 +91,12 @@ function Main (){
                 </section>
                 <ul className="galery__list" id='galery__content'>
                     {cards.map((card) => (
-                        <Card key={card._id} card={card} />
+                        <Card 
+                        key={card._id} 
+                        card={card} 
+                        onLikeCard={handleCardLike} 
+                        onCardDelete={handleCardDelete}
+                        />
                     ))}
                 </ul>
                 {popup && (
