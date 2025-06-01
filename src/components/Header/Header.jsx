@@ -1,7 +1,7 @@
 import '../../index.css'
 import logoHeader from '../../assets/image/header.svg'
 
-function header (){
+function Header (){
     return(
         <>
             <header className="header">
@@ -11,4 +11,4 @@ function header (){
     )
 }
 
-export default header
+export default Header

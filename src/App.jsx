@@ -1,6 +1,7 @@
 import './index.css'
 import Header from './components/Header/Header.jsx'
 import Main from './components/Main/Main.jsx'
+import Footer from './components/Footer/Footer.jsx'
 import api from './utils/Api.js'
 import { useEffect, useState } from 'react';
 import CurrentUserContext from './contexts/CurrentUserContext.js';
@@ -104,6 +105,7 @@ function App() {
           onClosePopup={handleClosePopup}
           popup={popup}
         />
+        <Footer/>
       </div>
     </CurrentUserContext.Provider>
   )
