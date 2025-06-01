@@ -12,7 +12,7 @@
     }
 
     #galery__content{
-        margin: auto !important;
+        grid-template-columns: auto;;
     }
 
     .profile__info-list{
@@ -105,8 +105,8 @@
         height: 18px;
     }
     #galery__content{
-        gap: 10px;
-        padding: 0 86px 0 !important;
+        grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+        gap: 8px;
     }
     .galery__item{
         margin: auto;
@@ -175,7 +175,7 @@
         height: 18px;
     }
     #galery__content{
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
     }
     .galery__item{
         margin: auto;
