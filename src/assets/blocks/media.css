@@ -34,10 +34,15 @@
         margin: auto;
     }
 
+    .modal{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .modal__content{
-        margin: 50px 22px;
-        position: fixed;
-        max-height: 275px;
+        max-width: 241px;
+        width: 100%;
     }
 
     .close{
@@ -119,7 +124,8 @@
     }
     
     .modal__content{
-        margin: 100px auto;
+        max-width: 17rem;
+        width: 100%;
 
     }
 
@@ -188,7 +194,8 @@
     }
 
     .modal__content{
-        margin: 100px auto;
+        max-width: 17rem;
+        width: 100%;
 
     }
 
