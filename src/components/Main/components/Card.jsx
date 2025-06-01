@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import '../../../index.css'
 import ImagePopup from '../Popup/form/ImagePopup/ImagePopup.jsx'
 import Popup from '../Popup/Popup.jsx';
+import CurrentUserContext from '../../../contexts/CurrentUserContext.js';
 
 export default function Card({card, handleOpenPopup, onLikeCard, onCardDelete}) {
     const { name, link, isLiked} = card;
     const [popup, setPopup] = useState(null)
+    const {currentUser} = useContext(CurrentUserContext);
 
     const newImagePopup = { children:<ImagePopup card={card}/>}
 
-    const isLikedClass = `galery__item-like-button ${isLiked ? 'galery__item-like-button_active' : ''}`;
+    const isLikedClass = `galery__item-like-button ${isLiked ? 'galery__item-like-button_active' : 'galery__item-like-button'}`;
 
      function handleOpenPopup(popup) {
         setPopup(popup);

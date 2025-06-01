@@ -52,8 +52,8 @@ class Api {
             .catch(this._catchError);
     }
 
-    changeLikeCardStatus(cardId) {
-        return this._makefetch(`cards/${cardId}/likes`, 'PUT')
+    changeLikeCardStatus(cardId,isLiked) {
+        return this._makefetch(`cards/${cardId}/likes`, isLiked ? 'DELETE' : 'PUT')
             .then(this._checkResponse)
             .catch(this._catchError);
     }
